@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}
+Add article
+{% endblock title %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<h2>Add Article</h2>
+
+<div class = "form-group">
+<form method="POST" enctype = "multipart/form-data">
+    {% csrf_token %}
+    {{ form.media }}
+    {{ form.as_p }}
+    <button class="btn btn-outline-dark"> Post </button>
+</form>
+</div>
+<script>
+    var name = "{{user.id}}";
+    document.getElementById("author-").value = name;
+</script>
+{% else %}
+
+Please Login.!
+
+{% endif %}
+
+{% endblock content %}
